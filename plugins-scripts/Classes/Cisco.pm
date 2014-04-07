@@ -30,7 +30,10 @@ use constant trees => (
 
 sub init {
   my $self = shift;
-  if ($self->{productname} =~ /Cisco NX-OS/i) {
+  if ($self->{productname} =~ /Cisco IOS XR/i) {
+    bless $self, 'Classes::Cisco::IOSXR';
+    $self->debug('using Classes::Cisco::IOSXR');
+  } elsif ($self->{productname} =~ /Cisco NX-OS/i) {
     bless $self, 'Classes::Cisco::NXOS';
     $self->debug('using Classes::Cisco::NXOS');
   } elsif ($self->{productname} =~ /Cisco Controller/i) {
